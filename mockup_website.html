@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitaCheck - Website Mockup</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f8fb;
+      color: #152232;
+    }
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 260px;
+      background: #ffffff;
+      border-right: 1px solid #e2e8f0;
+      padding: 24px 18px;
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #185fa5;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      color: #0c447c;
+      margin-bottom: 2px;
+    }
+
+    .brand-text p {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav button {
+      border: none;
+      background: transparent;
+      color: #64748b;
+      padding: 13px 14px;
+      border-radius: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      font-size: 14px;
+      text-align: left;
+      transition: 0.2s;
+    }
+
+    .nav button:hover,
+    .nav button.active {
+      background: #e6f1fb;
+      color: #0c447c;
+      font-weight: 600;
+    }
+
+    .sidebar-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 18px;
+      right: 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .sidebar-footer p:first-child {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-footer p:last-child {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 26px 34px 42px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .page-title h2 {
+      font-size: 28px;
+      margin-bottom: 6px;
+      color: #102a43;
+    }
+
+    .page-title p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 10px 14px;
+      border-radius: 16px;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #e6f1fb;
+      color: #0c447c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .profile-chip strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .profile-chip span {
+      display: block;
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .dashboard-grid {
+      grid-template-columns: 1.35fr 0.9fr;
+      align-items: start;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.04);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #e6f1fb, #ffffff);
+      border: 1px solid #b8d7f4;
+      padding: 28px;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .badge-blue {
+      background: #e6f1fb;
+      color: #0c447c;
+      border: 1px solid #85b7eb;
+    }
+
+    .badge-yellow {
+      background: #faeeda;
+      color: #633806;
+      border: 1px solid #ef9f27;
+    }
+
+    .badge-green {
+      background: #eaf3de;
+      color: #27500a;
+      border: 1px solid #9bc46c;
+    }
+
+    .hero h3 {
+      font-size: 38px;
+      color: #0c447c;
+      margin: 16px 0 8px;
+    }
+
+    .hero p {
+      color: #41627f;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    .risk-meter {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      margin: 24px 0 8px;
+    }
+
+    .risk-seg {
+      height: 9px;
+      border-radius: 999px;
+    }
+
+    .risk-labels {
+      display: flex;
+      justify-content: space-between;
+      color: #185fa5;
+      font-size: 12px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-title h3 {
+      font-size: 18px;
+      color: #102a43;
+    }
+
+    .section-title span {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .metric-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .metric-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .metric-card h4 {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 7px;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #102a43;
+    }
+
+    .metric-value small {
+      font-size: 14px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .metric-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .recommendation {
+      display: flex;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .recommendation:last-child {
+      border-bottom: none;
+    }
+
+    .bar {
+      width: 4px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .recommendation h4 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .recommendation p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .question-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .form-card label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+      color: #102a43;
+    }
+
+    .input:focus,
+    .select:focus {
+      border-color: #185fa5;
+      box-shadow: 0 0 0 3px rgba(24, 95, 165, 0.12);
+    }
+
+    .form-help {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 7px;
+    }
+
+    .range-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .range-value {
+      min-width: 72px;
+      text-align: right;
+      font-weight: 700;
+      color: #0c447c;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: #185fa5;
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+
+    .result-layout {
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: start;
+    }
+
+    .score-card {
+      text-align: center;
+      background: #faeeda;
+      border-color: #ef9f27;
+    }
+
+    .score-number {
+      font-size: 72px;
+      font-weight: 800;
+      color: #412402;
+      margin: 12px 0 4px;
+    }
+
+    .score-number span {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .score-card p {
+      color: #633806;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .factor-row {
+      display: grid;
+      grid-template-columns: 1fr 260px 44px;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14px;
+    }
+
+    .factor-row:last-child {
+      border-bottom: none;
+    }
+
+    .factor-track {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .factor-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .history-table th,
+    .history-table td {
+      text-align: left;
+      padding: 14px 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .history-table th {
+      color: #64748b;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .profile-grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: start;
+    }
+
+    .profile-large {
+      text-align: center;
+    }
+
+    .avatar-large {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: #e6f1fb;
+      color: #0c447c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .profile-large h3 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .profile-large p {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .settings-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #ffffff;
+    }
+
+    .setting-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .setting-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .setting-item strong {
+      font-size: 14px;
+    }
+
+    .setting-item span {
+      color: #94a3b8;
+    }
+
+    @media (max-width: 980px) {
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .sidebar-footer {
+        position: static;
+        margin-top: 18px;
+      }
+
+      .app {
+        flex-direction: column;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 22px;
+      }
+
+      .dashboard-grid,
+      .result-layout,
+      .profile-grid,
+      .question-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 16px;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .factor-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .profile-chip {
+        width: 100%;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">V</div>
+        <div class="brand-text">
+          <h1>VitaCheck</h1>
+          <p>Health Risk Prediction</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="active" onclick="showPage('dashboard', this)">Dashboard</button>
+        <button onclick="showPage('questionnaire', this)">Kuesioner</button>
+        <button onclick="showPage('result', this)">Hasil Prediksi</button>
+        <button onclick="showPage('profile', this)">Profil</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>Tips hari ini</p>
+        <p>Kurangi layar 1 jam sebelum tidur untuk membantu meningkatkan kualitas istirahat.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="page-title">
+          <h2 id="pageTitle">Dashboard</h2>
+          <p id="pageSubtitle">Ringkasan risiko kesehatan berdasarkan gaya hidup harian.</p>
+        </div>
+        <div class="profile-chip">
+          <div class="avatar">AN</div>
+          <div>
+            <strong>Andi Nugroho</strong>
+            <span>Risiko Sedang · 24 tahun</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="screen active" id="dashboard">
+        <div class="grid dashboard-grid">
+          <div class="card hero">
+            <div class="hero-top">
+              <div>
+                <span class="badge badge-blue">● Risiko kesehatan kamu</span>
+                <h3>Sedang</h3>
+                <p>Pola gaya hidupmu menunjukkan beberapa faktor risiko yang perlu diperhatikan, terutama screen time dan durasi tidur.</p>
+              </div>
+              <span class="badge badge-yellow">Diperbarui 2 jam lalu</span>
+            </div>
+            <div class="risk-meter">
+              <div class="risk-seg" style="background:#639922"></div>
+              <div class="risk-seg" style="background:#639922"></div>
+              <div class="risk-seg" style="background:#ef9f27"></div>
+              <div class="risk-seg" style="background:#ef9f27"></div>
+              <div class="risk-seg" style="background:#d0d0c8"></div>
+              <div class="risk-seg" style="background:#d0d0c8"></div>
+            </div>
+            <div class="risk-labels">
+              <span>Rendah</span>
+              <span>Sedang</span>
+              <span>Tinggi</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title">
+              <h3>Rekomendasi Hari Ini</h3>
+              <span>2 saran</span>
+            </div>
+            <div class="recommendation">
+              <div class="bar" style="background:#185fa5"></div>
+              <div>
+                <h4>Kurangi screen time malam</h4>
+                <p>Hindari penggunaan layar 1 jam sebelum tidur untuk meningkatkan kualitas tidur.</p>
+              </div>
+            </div>
+            <div class="recommendation">
+              <div class="bar" style="background:#3b6d11"></div>
+              <div>
+                <h4>Tambah 13 menit olahraga</h4>
+                <p>Kamu sudah beraktivitas 32 menit. Sedikit lagi mencapai target 45 menit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-header">
+              <div class="metric-icon" style="background:#eaf3de;color:#3b6d11">🏃</div>
+              <span class="badge badge-green">Aktif</span>
+            </div>
+            <h4>Aktivitas fisik</h4>
+            <div class="metric-value">32<small> mnt</small></div>
+            <div class="metric-note">Target harian 45 menit</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <div class="metric-icon" style="background:#eeedfe;color:#534ab7">🌙</div>
+              <span class="badge badge-yellow">Kurang</span>
+            </div>
+            <h4>Tidur semalam</h4>
+            <div class="metric-value">6.5<small> jam</small></div>
+            <div class="metric-note">Kurang sekitar 1.5 jam</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <div class="metric-icon" style="background:#faeeda;color:#854f0b">💻</div>
+              <span class="badge badge-yellow">Tinggi</span>
+            </div>
+            <h4>Screen time</h4>
+            <div class="metric-value">5.2<small> jam</small></div>
+            <div class="metric-note">Melebihi batas harian</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <div class="metric-icon" style="background:#fcebeb;color:#a32d2d">⚡</div>
+              <span class="badge badge-yellow">Sedang</span>
+            </div>
+            <h4>Tingkat stres</h4>
+            <div class="metric-value">Sedang</div>
+            <div class="metric-note">Berdasarkan kuesioner</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="questionnaire">
+        <div class="card">
+          <div class="section-title">
+            <h3>Kuesioner Gaya Hidup</h3>
+            <span>8 input utama</span>
+          </div>
+          <div class="grid question-grid">
+            <div class="form-card">
+              <label>Screen time harian</label>
+              <div class="range-wrap">
+                <input type="range" min="0" max="14" value="5.2" step="0.1" oninput="screenVal.textContent=this.value + ' jam'" />
+                <div class="range-value" id="screenVal">5.2 jam</div>
+              </div>
+              <div class="form-help">Total penggunaan layar dalam satu hari.</div>
+            </div>
+
+            <div class="form-card">
+              <label>Penggunaan HP sebelum tidur</label>
+              <input class="input" type="number" value="60" />
+              <div class="form-help">Durasi dalam menit.</div>
+            </div>
+
+            <div class="form-card">
+              <label>Jumlah notifikasi harian</label>
+              <input class="input" type="number" value="80" />
+              <div class="form-help">Perkiraan jumlah notifikasi yang diterima.</div>
+            </div>
+
+            <div class="form-card">
+              <label>Durasi tidur</label>
+              <input class="input" type="number" value="6.5" step="0.1" />
+              <div class="form-help">Jumlah jam tidur semalam.</div>
+            </div>
+
+            <div class="form-card">
+              <label>Kondisi bangun tidur</label>
+              <select class="select">
+                <option>Segar</option>
+                <option selected>Biasa saja</option>
+                <option>Lelah</option>
+              </select>
+              <div class="form-help">Digunakan untuk memperkirakan kualitas tidur.</div>
+            </div>
+
+            <div class="form-card">
+              <label>Aktivitas fisik harian</label>
+              <div class="range-wrap">
+                <input type="range" min="0" max="120" value="32" step="5" oninput="activityVal.textContent=this.value + ' mnt'" />
+                <div class="range-value" id="activityVal">32 mnt</div>
+              </div>
+              <div class="form-help">Durasi olahraga atau aktivitas fisik.</div>
+            </div>
+
+            <div class="form-card">
+              <label>Kondisi stres hari ini</label>
+              <select class="select">
+                <option>Rendah</option>
+                <option selected>Sedang</option>
+                <option>Tinggi</option>
+              </select>
+              <div class="form-help">Penilaian sederhana berdasarkan kondisi harian.</div>
+            </div>
+
+            <div class="form-card">
+              <label>Fokus dan kelelahan mental</label>
+              <select class="select">
+                <option>Baik</option>
+                <option selected>Cukup</option>
+                <option>Buruk</option>
+              </select>
+              <div class="form-help">Menggambarkan kondisi fokus dan energi mental.</div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-outline">Simpan Draft</button>
+            <button class="btn btn-primary" onclick="showPage('result', document.querySelectorAll('.nav button')[2])">Lihat Hasil Prediksi</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="result">
+        <div class="grid result-layout">
+          <div class="card score-card">
+            <span class="badge badge-yellow">Risiko Sedang</span>
+            <div class="score-number">64<span>/100</span></div>
+            <p>Pola gaya hidupmu memiliki beberapa faktor risiko yang perlu diperhatikan. Kondisi ini belum tergolong tinggi, tetapi tetap perlu perbaikan.</p>
+          </div>
+
+          <div class="card">
+            <div class="section-title">
+              <h3>Kontribusi Faktor Risiko</h3>
+              <span>Model prediction insight</span>
+            </div>
+            <div class="factor-row">
+              <strong>Screen time berlebih</strong>
+              <div class="factor-track"><div class="factor-fill" style="width:78%;background:#ef9f27"></div></div>
+              <span>78%</span>
+            </div>
+            <div class="factor-row">
+              <strong>Kurang tidur</strong>
+              <div class="factor-track"><div class="factor-fill" style="width:65%;background:#ef9f27"></div></div>
+              <span>65%</span>
+            </div>
+            <div class="factor-row">
+              <strong>Aktivitas fisik rendah</strong>
+              <div class="factor-track"><div class="factor-fill" style="width:42%;background:#639922"></div></div>
+              <span>42%</span>
+            </div>
+            <div class="factor-row">
+              <strong>Stres tinggi</strong>
+              <div class="factor-track"><div class="factor-fill" style="width:35%;background:#639922"></div></div>
+              <span>35%</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <div class="section-title">
+            <h3>Riwayat Prediksi</h3>
+            <span>Perkembangan risiko pengguna</span>
+          </div>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Kategori</th>
+                <th>Skor</th>
+                <th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hari ini, 09:00</td>
+                <td><span class="status-dot" style="background:#ef9f27"></span>Sedang</td>
+                <td>64</td>
+                <td>Screen time tinggi</td>
+              </tr>
+              <tr>
+                <td>Kemarin, 08:30</td>
+                <td><span class="status-dot" style="background:#ef9f27"></span>Sedang</td>
+                <td>61</td>
+                <td>Tidur kurang</td>
+              </tr>
+              <tr>
+                <td>3 hari lalu</td>
+                <td><span class="status-dot" style="background:#639922"></span>Rendah</td>
+                <td>38</td>
+                <td>Aktivitas cukup</td>
+              </tr>
+              <tr>
+                <td>5 hari lalu</td>
+                <td><span class="status-dot" style="background:#639922"></span>Rendah</td>
+                <td>41</td>
+                <td>Stabil</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="screen" id="profile">
+        <div class="grid profile-grid">
+          <div class="card profile-large">
+            <div class="avatar-large">AN</div>
+            <h3>Andi Nugroho</h3>
+            <p>andi@email.com · 24 tahun</p>
+            <span class="badge badge-yellow">Risiko Sedang</span>
+          </div>
+
+          <div class="card">
+            <div class="section-title">
+              <h3>Pengaturan Akun</h3>
+              <span>Preferensi aplikasi</span>
+            </div>
+            <div class="settings-list">
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon" style="background:#e6f1fb;color:#185fa5">👤</div>
+                  <strong>Data pribadi</strong>
+                </div>
+                <span>›</span>
+              </div>
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon" style="background:#eaf3de;color:#3b6d11">🎯</div>
+                  <strong>Target kesehatan</strong>
+                </div>
+                <span>›</span>
+              </div>
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon" style="background:#eeedfe;color:#534ab7">🔔</div>
+                  <strong>Notifikasi pengingat</strong>
+                </div>
+                <span>Aktif</span>
+              </div>
+              <div class="setting-item">
+                <div class="setting-left">
+                  <div class="setting-icon" style="background:#faeeda;color:#854f0b">💻</div>
+                  <strong>Batas screen time</strong>
+                </div>
+                <span>5 jam</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const titles = {
+      dashboard: ['Dashboard', 'Ringkasan risiko kesehatan berdasarkan gaya hidup harian.'],
+      questionnaire: ['Kuesioner Gaya Hidup', 'Isi data harian untuk mendapatkan hasil prediksi risiko kesehatan.'],
+      result: ['Hasil Prediksi', 'Lihat kategori risiko, skor, faktor dominan, dan riwayat prediksi.'],
+      profile: ['Profil Pengguna', 'Kelola data pribadi, target kesehatan, dan pengaturan aplikasi.']
+    };
+
+    function showPage(id, btn) {
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('.nav button').forEach(item => item.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      document.getElementById('pageTitle').textContent = titles[id][0];
+      document.getElementById('pageSubtitle').textContent = titles[id][1];
+    }
+  </script>
+</body>
+</html>
