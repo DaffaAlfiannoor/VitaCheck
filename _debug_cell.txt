@@ -1,0 +1,107 @@
+# ─── Pembentukan Label Risiko ──────────────────────────────────────────────────
+
+def normalize_clip(val, low, high, invert=False):
+    """Normalisasi nilai ke rentang [0,1] menggunakan batas low-high.
+    invert=True jika nilai tinggi = kondisi BAIK (akan dibalik agar tinggi = risiko tinggi)."""
+    norm = (val - low) / (high - low + 1e-9)
+    norm = np.clip(norm, 0, 1)
+    if invert:
+        norm = 1 - norm
+    return norm
+
+def compute_risk_score(row):
+    score = 0.0
+
+    # 1. Screen time (0.08)
+    s_screen = normalize_clip(row.get('daily_screen_time_hours', 4), low=4, high=10)
+    score += 0.08 * s_screen
+
+    # 2. Phone before sleep (0.08)
+    s_phone = normalize_clip(row.get('phone_usage_before_sleep_minutes', 15), low=15, high=90)
+    score += 0.08 * s_phone
+
+    # 3. Sleep duration (0.15)
+    sleep_dur = row.get('sleep_duration_hours', 7)
+    if sleep_dur < 7:
+        s_sleep = np.clip(1 - (sleep_dur - 4) / (7 - 4 + 1e-9), 0, 1)
+    elif sleep_dur > 9:
+        s_sleep = normalize_clip(sleep_dur, low=9, high=11)
+    else:
+        s_sleep = 0.0
+    score += 0.15 * s_sleep
+
+    # 4. Sleep quality (0.15)
+    s_squal = normalize_clip(row.get('sleep_quality_score', 7), low=1, high=10, invert=True)
+    score += 0.15 * s_squal
+
+    # 5. Physical activity (0.15) -> batas atas 150 menit
+    s_activity = normalize_clip(row.get('physical_activity_minutes', 30), low=0, high=150, invert=True)
+    score += 0.15 * s_activity
+
+    # 6. Notifications (0.08)
+    s_notif = normalize_clip(row.get('notifications_received_per_day', 50), low=50, high=200)
+    score += 0.08 * s_notif
+
+    # 7. Stress level (0.12)
+    s_stress = normalize_clip(row.get('stress_level', 5), low=1, high=10)
+    score += 0.12 * s_stress
+
+    # 8. Mental fatigue (0.08)
+    s_fatigue = normalize_clip(row.get('mental_fatigue_score', 5), low=1, high=10)
+    score += 0.08 * s_fatigue
+
+    # 9. Caffeine intake (0.06)
+    s_caffeine = normalize_clip(row.get('caffeine_intake_cups', 0), low=0, high=5)
+    score += 0.06 * s_caffeine
+
+    return round(score * 100, 2)
+
+# ─── Terapkan fungsi ───────────────────────────────────────────────────────────
+df_clean['risk_score'] = df_clean.apply(compute_risk_score, axis=1)
+
+# ─── Kategorisasi dengan threshold baru (berdasarkan persentil) ──────────────
+def categorize_risk_fixed(score):
+    if score <= 30:
+        return 'Risiko Rendah'
+    elif score <= 60:
+        return 'Risiko Sedang'
+    else:
+        return 'Risiko Tinggi'
+
+df_clean['risk_level'] = df_clean['risk_score'].apply(categorize_risk_fixed)
+
+# ─── Distribusi kelas ─────────────────────────────────────────────────────────
+print("\nDistribusi risk_score:")
+print(df_clean['risk_score'].describe())
+
+print("\nDistribusi risk_level:")
+dist = df_clean['risk_level'].value_counts()
+print(dist)
+print("\nProporsi (%):")
+print((dist / len(df_clean) * 100).round(2).astype(str) + ' %')
+
+# ─── Visualisasi ──────────────────────────────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Histogram risk_score dengan garis threshold baru
+df_clean['risk_score'].hist(bins=30, ax=axes[0], color='steelblue', edgecolor='white')
+axes[0].set_title('Distribusi Risk Score (0–100)', fontweight='bold')
+axes[0].set_xlabel('Risk Score')
+axes[0].set_ylabel('Frekuensi')
+axes[0].axvline(40, color='orange', linestyle='--', label='Batas Rendah (40)')
+axes[0].axvline(64, color='red', linestyle='--', label='Batas Sedang (64)')
+axes[0].legend()
+
+# Bar chart distribusi risk_level
+colors = ['#2ecc71', '#f39c12', '#e74c3c']
+dist.plot(kind='bar', ax=axes[1], color=colors, edgecolor='white')
+axes[1].set_title('Distribusi Risk Level', fontweight='bold')
+axes[1].set_xlabel('Kategori Risiko')
+axes[1].set_ylabel('Jumlah Data')
+axes[1].tick_params(axis='x', rotation=0)
+for bar, val in zip(axes[1].patches, dist.values):
+    axes[1].text(bar.get_x() + bar.get_width()/2, bar.get_height() + 50,
+                 str(val), ha='center', fontsize=10)
+
+plt.tight_layout()
+plt.show()

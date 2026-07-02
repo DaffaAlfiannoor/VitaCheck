@@ -1,0 +1,5 @@
+-r requirements.txt
+imbalanced-learn>=0.13,<1
+matplotlib>=3.9,<4
+seaborn>=0.13,<1
+tensorflow>=2.18,<3
