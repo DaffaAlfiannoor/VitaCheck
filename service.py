@@ -46,9 +46,9 @@ class ModelService:
             inputs["sleep_quality_score"],
             inputs["physical_activity_minutes"],
             inputs["notifications_received_per_day"],
-            inputs["caffeine_intake_cups"],
             inputs["stress_level"],
             inputs["mental_fatigue_score"],
+            inputs["caffeine_intake_cups"],
         ]
         X = np.array([features])
         X_scaled = self._scaler.transform(X)
