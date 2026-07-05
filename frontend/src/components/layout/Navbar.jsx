@@ -39,70 +39,72 @@ export default function Navbar() {
   }, [isSidebarOpen])
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-4 lg:gap-10">
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="md:hidden p-2 text-slate-600 hover:text-indigo-600 focus:outline-none"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-          
-          <Link to="/" className="flex items-center gap-2.5 font-bold text-lg text-slate-900">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-400 rounded-lg flex items-center justify-center text-white text-sm font-bold">
-              V
+    <>
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-4 lg:gap-10">
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="md:hidden p-2 text-slate-600 hover:text-indigo-600 focus:outline-none"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            
+            <Link to="/" className="flex items-center gap-2.5 font-bold text-lg text-slate-900">
+              <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-400 rounded-lg flex items-center justify-center text-white text-sm font-bold">
+                V
+              </div>
+              VitaCheck
+            </Link>
+            
+            <div className="hidden md:flex items-center gap-6">
+              {links.map((l) => (
+                <Link key={l.to} to={l.to} className={navClass(l.to)}>
+                  {l.label}
+                </Link>
+              ))}
+              {user && authedLinks.map((l) => (
+                <Link key={l.to} to={l.to} className={navClass(l.to)}>
+                  {l.label}
+                </Link>
+              ))}
             </div>
-            VitaCheck
-          </Link>
-          
-          <div className="hidden md:flex items-center gap-6">
-            {links.map((l) => (
-              <Link key={l.to} to={l.to} className={navClass(l.to)}>
-                {l.label}
-              </Link>
-            ))}
-            {user && authedLinks.map((l) => (
-              <Link key={l.to} to={l.to} className={navClass(l.to)}>
-                {l.label}
-              </Link>
-            ))}
+          </div>
+
+          <div className="hidden md:flex items-center gap-3">
+            {user ? (
+              <div className="flex items-center gap-3">
+                <span className="hidden sm:block text-sm text-slate-600">
+                  {user.username}
+                </span>
+                <button
+                  onClick={logout}
+                  className="text-sm font-medium text-slate-500 hover:text-red-600 transition-colors"
+                >
+                  Keluar
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="text-sm font-medium text-slate-500 hover:text-indigo-600 transition-colors"
+                >
+                  Masuk
+                </Link>
+                <Link
+                  to="/register"
+                  className="text-sm font-semibold text-white bg-gradient-to-br from-indigo-500 to-indigo-400 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all"
+                >
+                  Daftar
+                </Link>
+              </>
+            )}
           </div>
         </div>
-
-        <div className="hidden md:flex items-center gap-3">
-          {user ? (
-            <div className="flex items-center gap-3">
-              <span className="hidden sm:block text-sm text-slate-600">
-                {user.username}
-              </span>
-              <button
-                onClick={logout}
-                className="text-sm font-medium text-slate-500 hover:text-red-600 transition-colors"
-              >
-                Keluar
-              </button>
-            </div>
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="text-sm font-medium text-slate-500 hover:text-indigo-600 transition-colors"
-              >
-                Masuk
-              </Link>
-              <Link
-                to="/register"
-                className="text-sm font-semibold text-white bg-gradient-to-br from-indigo-500 to-indigo-400 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all"
-              >
-                Daftar
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
+      </nav>
 
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
@@ -114,9 +116,10 @@ export default function Navbar() {
 
       {/* Sidebar Content */}
       <div 
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl md:hidden flex flex-col transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 left-0 z-60 w-72 bg-white shadow-xl md:hidden flex flex-col transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        style={{ zIndex: 9999 }}
       >
         <div className="flex items-center justify-between p-4 border-b border-slate-200">
           <Link to="/" onClick={closeSidebar} className="flex items-center gap-2.5 font-bold text-lg text-slate-900">
@@ -148,7 +151,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="p-4 border-t border-slate-200 mt-auto">
+        <div className="p-4 border-t border-slate-200 mt-auto bg-white">
           {user ? (
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
@@ -190,6 +193,6 @@ export default function Navbar() {
           )}
         </div>
       </div>
-    </nav>
+    </>
   )
 }
