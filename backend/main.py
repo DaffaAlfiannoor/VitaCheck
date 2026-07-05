@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from typing import Optional
 
@@ -29,10 +30,21 @@ app = FastAPI(
 
 app.include_router(auth_router)
 
+# Baca CORS origins dari env var (pisahkan dengan koma untuk multiple origins)
+# Contoh di Render: CORS_ORIGINS=https://vitacheck.vercel.app
+# Default "*" untuk pengembangan lokal
+_raw_origins = os.getenv("CORS_ORIGINS", "*")
+ALLOWED_ORIGINS: list[str] = (
+    [o.strip() for o in _raw_origins.split(",") if o.strip()]
+    if _raw_origins != "*"
+    else ["*"]
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=ALLOWED_ORIGINS,
+    # allow_credentials hanya boleh True jika origins bukan wildcard "*"
+    allow_credentials=ALLOWED_ORIGINS != ["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
