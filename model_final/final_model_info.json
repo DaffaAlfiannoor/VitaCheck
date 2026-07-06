@@ -61,19 +61,19 @@
   "cv_results": {
     "Logistic Regression": {
       "best_cv_score": 0.968215,
-      "training_time_sec": 5.56
+      "training_time_sec": 12.72
     },
     "Random Forest": {
       "best_cv_score": 0.907771,
-      "training_time_sec": 192.19
+      "training_time_sec": 226.23
     },
     "XGBoost": {
-      "best_cv_score": 0.92809,
-      "training_time_sec": 73.74
+      "best_cv_score": 0.92887,
+      "training_time_sec": 76.07
     },
     "SVM": {
       "best_cv_score": 0.9432,
-      "training_time_sec": 366.6
+      "training_time_sec": 348.74
     }
   },
   "test_metrics": {
@@ -92,11 +92,11 @@
       "Recall Risiko Tinggi": 0.894792
     },
     "XGBoost": {
-      "Accuracy": 0.921,
-      "Precision": 0.921637,
-      "Recall": 0.921,
-      "F1-Score": 0.921171,
-      "Recall Risiko Tinggi": 0.914583
+      "Accuracy": 0.919,
+      "Precision": 0.919728,
+      "Recall": 0.919,
+      "F1-Score": 0.919191,
+      "Recall Risiko Tinggi": 0.9125
     },
     "SVM": {
       "Accuracy": 0.918,

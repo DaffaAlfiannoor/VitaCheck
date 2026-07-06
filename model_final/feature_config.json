@@ -7,9 +7,8 @@
     "physical_activity_minutes",
     "notifications_received_per_day",
     "stress_level",
-    "mental_fatigue_score",
-    "caffeine_intake_cups"
+    "mental_fatigue_score"
   ],
-  "n_features": 9,
-  "description": "Urutan fitur yang digunakan saat training model (dengan caffeine)"
+  "n_features": 8,
+  "description": "Urutan fitur yang digunakan saat training model"
 }
