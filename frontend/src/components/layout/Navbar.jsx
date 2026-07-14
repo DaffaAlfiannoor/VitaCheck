@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import logo from '../../assets/logo.svg'
 
 const links = [
   { to: '/', label: 'Beranda' },
@@ -52,13 +53,8 @@ export default function Navbar() {
               </svg>
             </button>
             
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="flex items-center justify-center w-8 h-8 bg-slate-900 rounded text-white transition-transform group-hover:scale-105">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 8l7 8 7-8" />
-                </svg>
-              </div>
-              <span className="text-xl font-semibold tracking-tight text-slate-900">VitaCheck</span>
+            <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
+              <img src={logo} alt="VitaCheck" className="h-9 w-auto" />
             </Link>
             
             <div className="hidden md:flex items-center gap-6">
@@ -124,13 +120,8 @@ export default function Navbar() {
         style={{ zIndex: 9999 }}
       >
         <div className="flex items-center justify-between p-4 border-b border-slate-200">
-          <Link to="/" onClick={closeSidebar} className="flex items-center gap-2.5 group">
-            <div className="flex items-center justify-center w-8 h-8 bg-slate-900 rounded text-white transition-transform group-hover:scale-105">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 8l7 8 7-8" />
-              </svg>
-            </div>
-            <span className="text-xl font-semibold tracking-tight text-slate-900">VitaCheck</span>
+          <Link to="/" onClick={closeSidebar} className="flex items-center transition-opacity hover:opacity-80">
+            <img src={logo} alt="VitaCheck" className="h-9 w-auto" />
           </Link>
           <button
             onClick={closeSidebar}
