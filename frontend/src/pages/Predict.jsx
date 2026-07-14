@@ -1,8 +1,15 @@
 import { useState, useCallback } from 'react'
 import { predict } from '../api/prediction'
 import SliderField from '../components/ui/SliderField'
+import SelectField from '../components/ui/SelectField'
 import RiskBadge from '../components/ui/RiskBadge'
 import FactorBar from '../components/ui/FactorBar'
+
+const notificationOptions = Array.from({ length: 30 }, (_, i) => {
+  const start = i * 10 + 1;
+  const end = (i + 1) * 10;
+  return { label: `${start}-${end}`, value: (start + end) / 2 };
+});
 
 const defaults = {
   daily_screen_time_hours: 7.4,
@@ -10,7 +17,7 @@ const defaults = {
   sleep_duration_hours: 5.8,
   sleep_quality_score: 5,
   physical_activity_minutes: 18,
-  notifications_received_per_day: 143,
+  notifications_received_per_day: 145.5,
   caffeine_intake_cups: 2,
   stress_level: 7,
   mental_fatigue_score: 6,
@@ -67,7 +74,7 @@ export default function Predict() {
       fields: [
         { key: 'daily_screen_time_hours', label: 'Screen time harian', min: 0, max: 14, step: 0.1, unit: 'jam', minLabel: '0 jam', maxLabel: '14 jam' },
         { key: 'phone_usage_before_sleep_minutes', label: 'HP sebelum tidur', min: 0, max: 120, unit: 'mnt', minLabel: '0 mnt', maxLabel: '120 mnt' },
-        { key: 'notifications_received_per_day', label: 'Notifikasi per hari', min: 20, max: 299, minLabel: '20', maxLabel: '299' },
+        { key: 'notifications_received_per_day', label: 'Notifikasi per hari', type: 'select', options: notificationOptions },
       ],
     },
     {
@@ -119,20 +126,33 @@ export default function Predict() {
               <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">
                 {group.title}
               </div>
-              {group.fields.map((f) => (
-                <SliderField
-                  key={f.key}
-                  label={f.label}
-                  value={form[f.key]}
-                  onChange={handleChange(f.key)}
-                  min={f.min}
-                  max={f.max}
-                  step={f.step}
-                  unit={f.unit}
-                  minLabel={f.minLabel}
-                  maxLabel={f.maxLabel}
-                />
-              ))}
+              {group.fields.map((f) => {
+                if (f.type === 'select') {
+                  return (
+                    <SelectField
+                      key={f.key}
+                      label={f.label}
+                      value={form[f.key]}
+                      onChange={handleChange(f.key)}
+                      options={f.options}
+                    />
+                  )
+                }
+                return (
+                  <SliderField
+                    key={f.key}
+                    label={f.label}
+                    value={form[f.key]}
+                    onChange={handleChange(f.key)}
+                    min={f.min}
+                    max={f.max}
+                    step={f.step}
+                    unit={f.unit}
+                    minLabel={f.minLabel}
+                    maxLabel={f.maxLabel}
+                  />
+                )
+              })}
             </div>
           ))}
 
