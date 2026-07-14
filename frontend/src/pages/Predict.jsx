@@ -8,7 +8,7 @@ import FactorBar from '../components/ui/FactorBar'
 const notificationOptions = Array.from({ length: 30 }, (_, i) => {
   const start = i * 10 + 1;
   const end = (i + 1) * 10;
-  return { label: `${start}-${end}`, value: (start + end) / 2 };
+  return { label: `${start}-${end}`, value: Math.round((start + end) / 2) };
 });
 
 const defaults = {
@@ -17,7 +17,7 @@ const defaults = {
   sleep_duration_hours: 5.8,
   sleep_quality_score: 5,
   physical_activity_minutes: 18,
-  notifications_received_per_day: 145.5,
+  notifications_received_per_day: 146,
   caffeine_intake_cups: 2,
   stress_level: 7,
   mental_fatigue_score: 6,
