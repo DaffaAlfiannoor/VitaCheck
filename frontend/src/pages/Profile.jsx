@@ -132,32 +132,61 @@ export default function Profile() {
       <h1 className="text-2xl font-bold text-slate-900 mb-6">Profil Saya</h1>
 
       <div className="grid sm:grid-cols-[0.8fr_1.2fr] gap-6 items-start">
-        {/* Avatar & User Info Card */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-400 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-4 shadow-lg shadow-indigo-500/30">
-            {user?.username?.[0]?.toUpperCase() || 'U'}
-          </div>
-          <h3 className="text-xl font-bold text-slate-900">{user?.username || 'Pengguna'}</h3>
-          <p className="text-sm text-slate-500 mb-4">{user?.email || '-'}</p>
-          
-          <div className="w-full h-px bg-slate-100 my-4" />
-          
-          <div className="text-left space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-xs text-slate-500 font-medium">Status Risiko Saat Ini</span>
-              {loading ? (
-                <div className="w-4 h-4 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" />
-              ) : (
-                <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold border ${getBadgeColor(riskLabel)}`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${getDotColor(riskLabel)}`} />
-                  {riskLabel}
-                </div>
-              )}
+        {/* Left Column */}
+        <div className="space-y-6">
+          {/* Avatar & User Info Card */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-400 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-4 shadow-lg shadow-indigo-500/30">
+              {user?.username?.[0]?.toUpperCase() || 'U'}
             </div>
+            <h3 className="text-xl font-bold text-slate-900">{user?.username || 'Pengguna'}</h3>
+            <p className="text-sm text-slate-500 mb-4">{user?.email || '-'}</p>
             
-            <div className="flex justify-between items-center">
-              <span className="text-xs text-slate-500 font-medium">Bergabung Sejak</span>
-              <span className="text-xs font-semibold text-slate-700">{formatDate(user?.created_at)}</span>
+            <div className="w-full h-px bg-slate-100 my-4" />
+            
+            <div className="text-left space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-slate-500 font-medium">Status Risiko</span>
+                {loading ? (
+                  <div className="w-4 h-4 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" />
+                ) : (
+                  <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold border ${getBadgeColor(riskLabel)}`}>
+                    <span className={`w-1.5 h-1.5 rounded-full ${getDotColor(riskLabel)}`} />
+                    {riskLabel}
+                  </div>
+                )}
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-slate-500 font-medium">Bergabung Sejak</span>
+                <span className="text-xs font-semibold text-slate-700">{formatDate(user?.created_at)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Card */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <h3 className="font-bold text-slate-900 mb-4">Statistik Rata-rata</h3>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 border border-slate-100 bg-slate-50 rounded-xl">
+                <div className="w-8 h-8 mb-2 text-indigo-500 bg-indigo-50 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                </div>
+                <div className="text-xs text-slate-500 mb-1">Skor Rata-rata</div>
+                <div className="text-xl font-bold text-slate-800">
+                  {loading ? '-' : history.length > 0 ? avgScore : '-'}
+                </div>
+              </div>
+              <div className="p-4 border border-slate-100 bg-slate-50 rounded-xl">
+                <div className="w-8 h-8 mb-2 text-amber-500 bg-amber-50 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                </div>
+                <div className="text-xs text-slate-500 mb-1">Faktor Dominan</div>
+                <div className="text-sm font-bold text-slate-800">
+                  {loading ? '-' : frequentFactor}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -192,55 +221,6 @@ export default function Profile() {
                 {targetLoading ? '...' : 'Simpan'}
               </button>
             </form>
-          </div>
-
-          {/* Account Details & Stats */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-            <h3 className="font-bold text-slate-900 mb-4">Statistik Rata-rata</h3>
-            
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="p-4 border border-slate-100 bg-slate-50 rounded-xl">
-                <div className="w-8 h-8 mb-2 text-indigo-500 bg-indigo-50 rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                </div>
-                <div className="text-xs text-slate-500 mb-1">Skor Rata-rata</div>
-                <div className="text-xl font-bold text-slate-800">
-                  {loading ? '-' : history.length > 0 ? avgScore : '-'}
-                </div>
-              </div>
-              <div className="p-4 border border-slate-100 bg-slate-50 rounded-xl">
-                <div className="w-8 h-8 mb-2 text-amber-500 bg-amber-50 rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                </div>
-                <div className="text-xs text-slate-500 mb-1">Faktor Dominan</div>
-                <div className="text-sm font-bold text-slate-800">
-                  {loading ? '-' : frequentFactor}
-                </div>
-              </div>
-            </div>
-
-            <h3 className="font-bold text-slate-900 mb-4">Informasi Akun</h3>
-            <div className="space-y-2.5">
-              <div className="flex items-center justify-between p-3.5 border border-slate-100 rounded-xl bg-white">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                  </div>
-                  <span className="text-sm font-medium text-slate-700">Username</span>
-                </div>
-                <span className="text-sm font-semibold text-slate-900">{user?.username}</span>
-              </div>
-              
-              <div className="flex items-center justify-between p-3.5 border border-slate-100 rounded-xl bg-white">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                  </div>
-                  <span className="text-sm font-medium text-slate-700">Email</span>
-                </div>
-                <span className="text-sm font-semibold text-slate-900">{user?.email}</span>
-              </div>
-            </div>
           </div>
 
           {/* Change Password */}
