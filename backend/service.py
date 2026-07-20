@@ -5,7 +5,7 @@ import numpy as np
 
 from schemas import LABEL_MAP
 
-MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "model_final_svm")
+MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "model_final")
 MODEL_PATH = os.path.join(MODEL_DIR, "final_health_risk_model.joblib")
 SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
 MODEL_INFO_PATH = os.path.join(MODEL_DIR, "final_model_info.json")
