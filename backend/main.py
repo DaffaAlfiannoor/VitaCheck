@@ -1,4 +1,3 @@
-import logging
 import os
 from contextlib import asynccontextmanager
 from typing import Optional
@@ -11,11 +10,6 @@ from schemas import ModelInfo, PredictionInput, PredictionOutput, PredictionResu
 from service import ModelService
 from auth import router as auth_router, SECRET_KEY, ALGORITHM
 from database import init_db, get_db
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-)
 
 svc = ModelService()
 

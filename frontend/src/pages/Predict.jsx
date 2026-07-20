@@ -80,7 +80,7 @@ export default function Predict() {
     {
       title: 'Tidur & Aktivitas',
       fields: [
-        { key: 'sleep_duration_hours', label: 'Durasi tidur', min: 3, max: 10, step: 0.1, unit: 'jam', minLabel: '3 jam', maxLabel: '10 jam' },
+        { key: 'sleep_duration_hours', label: 'Durasi tidur', min: 4, max: 9, step: 0.1, unit: 'jam', minLabel: '4 jam', maxLabel: '9 jam' },
         { key: 'sleep_quality_score', label: 'Kualitas tidur', min: 1, max: 10, minLabel: '1 (buruk)', maxLabel: '10 (baik)' },
         { key: 'physical_activity_minutes', label: 'Aktivitas fisik', min: 0, max: 120, unit: 'mnt', minLabel: '0 mnt', maxLabel: '120 mnt' },
       ],

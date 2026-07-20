@@ -1,0 +1,225 @@
+<mxfile host="app.diagrams.net" version="24.7.5">
+  <diagram name="Flowchart Alur Penggunaan Sistem VitaCheck" id="flowchart-penggunaan-vitacheck">
+    <mxGraphModel dx="900" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="2200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Judul -->
+        <mxCell id="title" value="Flowchart Alur Penggunaan Sistem" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="200" y="10" width="400" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Mulai -->
+        <mxCell id="s0" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="60" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 1: Buka Browser -->
+        <mxCell id="s1" value="Pengguna membuka Google Chrome" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="150" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 2: Akses URL Vercel -->
+        <mxCell id="s2" value="Akses https://vita-check.vercel.app" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="240" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 3: Cek JWT -->
+        <mxCell id="s3" value="Sistem memeriksa token JWT&#xa;di localStorage" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="330" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Decision 1: Sudah Login? -->
+        <mxCell id="d1" value="Sudah&#xa;login?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="325" y="420" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Step 4a: Tampil Dashboard (YA) -->
+        <mxCell id="s4a" value="Tampil Dashboard&#xa;(Ringkasan Risiko &amp; Tren)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="570" y="430" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Step 4b: Tampil Landing Page (TIDAK) -->
+        <mxCell id="s4b" value="Sistem menampilkan&#xa;Halaman Utama (Landing Page)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="550" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 5: Isi Formulir -->
+        <mxCell id="s5" value="Pengguna mengisi formulir prediksi&#xa;(Screen Time, Penggunaan HP, Durasi Tidur,&#xa;Kualitas Tidur, Aktivitas Fisik, Notifikasi,&#xa;Kafein, Stres, Kelelahan Mental)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="650" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Decision 2: Form Lengkap? -->
+        <mxCell id="d2" value="Form&#xa;sudah lengkap?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="325" y="775" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Step 6: Klik Tombol -->
+        <mxCell id="s6" value="Klik &quot;Cek Risiko Kesehatan&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="905" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 7: Kirim ke Backend Render -->
+        <mxCell id="s7" value="Frontend mengirim POST /predict&#xa;ke Backend (https://vitacheck-ebev.onrender.com)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1000" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Step 8: Validasi Pydantic -->
+        <mxCell id="s8" value="FastAPI memvalidasi input&#xa;dengan Pydantic Schema" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1110" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 9: StandardScaler -->
+        <mxCell id="s9" value="StandardScaler menormalisasi&#xa;8 fitur input" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1205" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 10: Inferensi Model -->
+        <mxCell id="s10" value="Logistic Regression&#xa;melakukan inferensi model" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1300" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Step 11: Tampil Hasil -->
+        <mxCell id="s11" value="Sistem menampilkan hasil prediksi:&#xa;Label Risiko, Confidence Score,&#xa;Probabilitas 3 Kelas, Rekomendasi Preventif" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1395" width="300" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Decision 3: Fitur Lain? -->
+        <mxCell id="d3" value="Pengguna ingin&#xa;lihat fitur lain?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="325" y="1510" width="150" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Step 12: Fitur Tambahan (YA) -->
+        <mxCell id="s12" value="Dashboard → Tren Risiko&#xa;Riwayat → Histori Prediksi&#xa;Profil → Manajemen Akun" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="570" y="1525" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Selesai -->
+        <mxCell id="s13" value="Selesai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1650" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ============ EDGES ============ -->
+
+        <!-- Mulai → Buka Browser -->
+        <mxCell id="e0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s0" target="s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Buka Browser → Akses URL -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Akses URL → Cek JWT -->
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Cek JWT → Decision Login -->
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s3" target="d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Decision Login → YA → Dashboard -->
+        <mxCell id="e4" value="YA" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="d1" target="s4a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Decision Login → TIDAK → Landing Page -->
+        <mxCell id="e5" value="TIDAK" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="d1" target="s4b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Dashboard (YA) → menuju Isi Formulir -->
+        <mxCell id="e5b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="s4a" target="s5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="640" />
+              <mxPoint x="670" y="690" />
+              <mxPoint x="550" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Landing Page → Isi Formulir -->
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s4b" target="s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Isi Formulir → Decision Form Lengkap -->
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s5" target="d2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Decision Form → TIDAK → kembali ke Isi Formulir -->
+        <mxCell id="e8" value="TIDAK" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="d2" target="s5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="815" />
+              <mxPoint x="570" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Decision Form → YA → Klik Tombol -->
+        <mxCell id="e9" value="YA" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="d2" target="s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Klik Tombol → Kirim ke Backend -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s6" target="s7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Kirim ke Backend → Validasi Pydantic -->
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s7" target="s8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Validasi → StandardScaler -->
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s8" target="s9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- StandardScaler → Inferensi -->
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s9" target="s10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Inferensi → Tampil Hasil -->
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s10" target="s11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Tampil Hasil → Decision Fitur Lain -->
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s11" target="d3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Decision Fitur Lain → YA → Fitur Tambahan -->
+        <mxCell id="e16" value="YA" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="d3" target="s12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Fitur Tambahan → kembali ke Formulir -->
+        <mxCell id="e16b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="s12" target="s5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="1420" />
+              <mxPoint x="670" y="690" />
+              <mxPoint x="550" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Decision Fitur Lain → TIDAK → Selesai -->
+        <mxCell id="e17" value="TIDAK" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="d3" target="s13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

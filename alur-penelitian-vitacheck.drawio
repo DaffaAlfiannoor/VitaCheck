@@ -1,0 +1,125 @@
+<mxfile host="app.diagrams.net" version="24.7.5">
+  <diagram name="Alur Penelitian VitaCheck" id="alur-penelitian-vitacheck">
+    <mxGraphModel dx="900" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Mulai -->
+        <mxCell id="s0" value="Mulai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=50;fontSize=13;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="330" y="20" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- 1. Akuisisi Dataset -->
+        <mxCell id="s1" value="1. Akuisisi Dataset&#10;Mengumpulkan sleep_mobile_stress_dataset_15000.csv&#10;(15.000 data gaya hidup digital: screen time, tidur, stres, aktivitas fisik, dsb.)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="110" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 2. Data Understanding -->
+        <mxCell id="s2" value="2. Data Understanding&#10;Eksplorasi struktur data, tipe data, jumlah baris/kolom,&#10;serta relevansi tiap fitur terhadap risiko kesehatan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="210" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 3. Data Cleaning -->
+        <mxCell id="s3" value="3. Data Cleaning&#10;Menangani nilai kosong, data duplikat, dan outlier&#10;agar data siap diproses" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="310" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 4. Pembentukan Label Risiko -->
+        <mxCell id="s4" value="4. Pembentukan Label Risiko&#10;Weighted scoring formula (domain knowledge) → risk_score (0-100)&#10;dikategorikan: Risiko Rendah, Sedang, Tinggi" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="410" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 5. EDA -->
+        <mxCell id="s5" value="5. Exploratory Data Analysis (EDA)&#10;Distribusi data, hubungan antar fitur, dan pola&#10;(histogram, boxplot, heatmap korelasi)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="510" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 6. Data Preprocessing -->
+        <mxCell id="s6" value="6. Data Preprocessing&#10;Memilih 8 fitur input, encoding label target, split data&#10;80:20 (stratified), normalisasi dengan Min-Max Scaler" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="610" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 7. Hyperparameter Tuning -->
+        <mxCell id="s7" value="7. Hyperparameter Tuning&#10;Melatih &amp; menyetel 4 algoritma (Logistic Regression, Random Forest,&#10;XGBoost, SVM) dengan RandomizedSearchCV, 5-fold cross-validation" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="710" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 8. Evaluasi Model -->
+        <mxCell id="s8" value="8. Evaluasi Model&#10;Mengukur performa tiap model pada data uji:&#10;Accuracy, Precision, Recall, F1-Score, Recall Risiko Tinggi" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="810" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 9. Pemilihan Model Terbaik -->
+        <mxCell id="s9" value="9. Pemilihan Model Terbaik&#10;Prioritas: Recall Risiko Tinggi tertinggi → F1-Score → Accuracy&#10;(false negative kelas Risiko Tinggi paling kritis)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="910" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 10. Interpretasi Fitur -->
+        <mxCell id="s10" value="10. Interpretasi Fitur&#10;Permutation Importance untuk mengukur kontribusi&#10;tiap fitur terhadap prediksi model terpilih" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="1010" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 11. Penyimpanan Model Final -->
+        <mxCell id="s11" value="11. Penyimpanan Model Final&#10;Model, scaler, konfigurasi fitur, dan label mapping&#10;disimpan sebagai .joblib, .pkl, dan .json" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="1110" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 12. Pengujian dengan Data Baru -->
+        <mxCell id="s12" value="12. Pengujian dengan Data Baru&#10;Model diuji ulang dengan data baru untuk memastikan&#10;konsistensi prediksi sebelum deployment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="1210" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 13. Pembangunan Backend -->
+        <mxCell id="s13" value="13. Pembangunan Backend&#10;Integrasi model ke REST API (FastAPI), autentikasi JWT,&#10;dan basis data SQLite untuk riwayat prediksi pengguna" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0b8484;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="1310" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 14. Pembangunan Frontend -->
+        <mxCell id="s14" value="14. Pembangunan Frontend&#10;Antarmuka web (React/Vite + Tailwind CSS): input data,&#10;hasil prediksi, dashboard, dan riwayat pengguna" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0b8484;fontSize=11;spacing=6" vertex="1" parent="1">
+          <mxGeometry x="290" y="1410" width="300" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Selesai -->
+        <mxCell id="s15" value="Selesai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;arcSize=50;fontSize=13;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="330" y="1510" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s0" target="s1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s1" target="s2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s2" target="s3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s3" target="s4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s4" target="s5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s5" target="s6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s6" target="s7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s7" target="s8"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s8" target="s9"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s9" target="s10"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s10" target="s11"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s11" target="s12"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s12" target="s13"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s13" target="s14"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="s14" target="s15"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Phase group labels on the side -->
+        <mxCell id="g1" value="Persiapan Data" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontColor=#6c8ebf;rotation=-90" vertex="1" parent="1">
+          <mxGeometry x="120" y="380" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" value="EDA &amp; Preprocessing" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontColor=#d79b00;rotation=-90" vertex="1" parent="1">
+          <mxGeometry x="120" y="600" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" value="Modeling &amp; Evaluasi" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontColor=#9673a6;rotation=-90" vertex="1" parent="1">
+          <mxGeometry x="120" y="850" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" value="Interpretasi &amp; Uji Ulang" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontColor=#d6b656;rotation=-90" vertex="1" parent="1">
+          <mxGeometry x="120" y="1150" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="g5" value="Deployment" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;fontColor=#0b8484;rotation=-90" vertex="1" parent="1">
+          <mxGeometry x="120" y="1400" width="140" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
