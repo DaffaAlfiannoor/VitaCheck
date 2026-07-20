@@ -5,7 +5,7 @@ import numpy as np
 
 from schemas import LABEL_MAP
 
-MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "model_final")
+MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "model_svm")
 MODEL_PATH = os.path.join(MODEL_DIR, "final_health_risk_model.joblib")
 SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
 MODEL_INFO_PATH = os.path.join(MODEL_DIR, "final_model_info.json")
@@ -48,7 +48,6 @@ class ModelService:
             inputs["notifications_received_per_day"],
             inputs["stress_level"],
             inputs["mental_fatigue_score"],
-            inputs["caffeine_intake_cups"],
         ]
         X = np.array([features])
         X_scaled = self._scaler.transform(X)
