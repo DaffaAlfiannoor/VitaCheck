@@ -1,0 +1,12 @@
+{
+  "int_to_label": {
+    "0": "Risiko Rendah",
+    "1": "Risiko Sedang",
+    "2": "Risiko Tinggi"
+  },
+  "label_to_int": {
+    "Risiko Rendah": 0,
+    "Risiko Sedang": 1,
+    "Risiko Tinggi": 2
+  }
+}
